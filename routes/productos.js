@@ -80,40 +80,7 @@ productoRouter
       });
     });
   })
-  .patch(function (request, response) {
-
-    console.log('PATCH /productos/:itemId');
-
-    var itemId = request.params.id;
-
-    Producto.findOne({ ProductoId: itemId }, function (error, item) {
-
-      if (error) {
-        response.status(500).send(error);
-        return;
-      }
-
-      if (item) {
-
-        for (var property in request.body) {
-          if (request.body.hasOwnProperty(property)) {
-            if (typeof item[property] !== 'undefined') {
-              item[property] = request.body[property];
-            }
-          }
-        }
-
-        item.save();
-
-        response.json(item);
-        return;
-      }
-
-      response.status(404).json({
-        message: 'productos con id ' + itemId + ' no fue encontrado.'
-      });
-    });
-  })
+ 
   .delete(function (request, response) {
 
     console.log('DELETE /productos/:id');

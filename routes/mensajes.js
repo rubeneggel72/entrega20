@@ -80,52 +80,7 @@ mensajeRouter
             });
         });
     })
-    .patch(function (request, response) {
 
-        console.log('PATCH /mensaje/:itemId');
-
-        var itemId = request.params.id;
-
-        Mensaje.findOne({ id: itemId }, function (error, item) {
-
-            if (error) {
-                response.status(500).send(error);
-                return;
-            }
-
-            if (item) {
-
-                for (var property in request.body) {
-                    if (request.body.hasOwnProperty(property)) {
-                        if (typeof item[property] !== 'undefined') {
-                            item[property] = request.body[property];
-                        }
-                    }
-                }
-
-                // if (request.body.name) {
-                //   item.name = request.body.name;
-                // }
-
-                // if (request.body.description) {
-                //   item.description = request.body.description;
-                // }
-
-                // if (request.body.quantity) {
-                //   item.quantity = request.body.quantity;
-                // }
-
-                item.save();
-
-                response.json(item);
-                return;
-            }
-
-            response.status(404).json({
-                message: 'Mensaje con id ' + itemId + ' no fue encontrado.'
-            });
-        });
-    })
     .delete(function (request, response) {
 
         console.log('DELETE /items/:itemId');
