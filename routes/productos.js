@@ -40,7 +40,7 @@ productoRouter
 
     var itemId = request.params.id;
 
-    Producto.findOne({ ProductoId: itemId }, function (error, item) {
+    Producto.findOne({ productoId: itemId }, function (error, item) {
 
       if (error) {
         response.status(500).send(error);
@@ -59,7 +59,7 @@ productoRouter
 
     var itemId = request.params.id;
 
-    Producto.findOne({ ProductoId: itemId }, function (error, item) {
+    Producto.findOne({ productoId: itemId }, function (error, item) {
 
       if (error) {
         response.status(500).send(error);
@@ -67,10 +67,11 @@ productoRouter
       }
 
       if (item) {
-        item.message = request.body.message;
-        item.username = request.body.username;
+        item.title = request.body.title;
+        item.price = request.body.price;
+        item.stock = request.body.stock;
+        item.thumbnail = request.body.thumbnail;
         item.save();
-
         response.json(item);
         return;
       }
@@ -87,7 +88,7 @@ productoRouter
 
     var itemId = request.params.id;
 
-    Producto.findOne({ ProductoId: itemId }, function (error, item) {
+    Producto.findOne({ productoId: itemId }, function (error, item) {
 
       if (error) {
         response.status(500).send(error);
